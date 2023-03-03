@@ -13,12 +13,13 @@ def create_app(config: Config) -> Flask:
     application = Flask(__name__)
     application.config.from_object(config)
     application.app_context().push()
+    register_extensions(application)
     return application
 
 
 def register_extensions(application: Flask) -> None:
     db.init_app(application)
-    api = Api(app)
+    api = Api(application)
     api.add_namespace(movie_ns)
     api.add_namespace(director_ns)
     api.add_namespace(genre_ns)
@@ -26,8 +27,8 @@ def register_extensions(application: Flask) -> None:
     api.add_namespace(auth_ns)
 
 
+app_config = Config()
+app = create_app(app_config)
+
 if __name__ == '__main__':
-    app_config = Config()
-    app = create_app(app_config)
-    register_extensions(app)
     app.run()

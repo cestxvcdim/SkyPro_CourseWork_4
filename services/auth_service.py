@@ -20,7 +20,7 @@ class AuthService:
                 abort(400)
 
         data = {
-            "username": user.user_name,
+            "username": user.username,
             "role": user.role
         }
 

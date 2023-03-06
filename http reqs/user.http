@@ -1,8 +1,8 @@
-GET http://127.0.0.1:5001/users/
+GET http://127.0.0.1:5000/users/
 Accept: application/json
 
 ###
-POST http://127.0.0.1:5001/users/
+POST http://127.0.0.1:5000/users/
 Content-Type: application/json
 
 {
@@ -12,6 +12,6 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://127.0.0.1:5001/users/116
+GET http://127.0.0.1:5000/users/1
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE2NzczNDk4MDh9.cbKAZzcSvCGTWvTcSNptOR7iymV4I9qUESlNKVugoHU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmlsbCIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTY4OTMzNjcxNX0.cGjT5xa635lD3nRYLBlJwiFVbQV9xMndV2AILewZsHs

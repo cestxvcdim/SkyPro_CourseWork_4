@@ -4,6 +4,7 @@ import hmac
 from dao.user_dao import UserDAO
 from constants import HASH_STR, PWD_HASH_SALT, PWD_HASH_ITERATIONS
 
+
 class UserService:
 
     def __init__(self, dao: UserDAO):
@@ -19,6 +20,7 @@ class UserService:
         return self.dao.get_all()
 
     def create(self, data):
+        data["password"] = self._generate_password(data["password"])
         return self.dao.create(data)
 
     def update(self, data, u_id):

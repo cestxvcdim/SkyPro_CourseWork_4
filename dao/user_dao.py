@@ -10,7 +10,7 @@ class UserDAO:
         return self.session.query(User).get(u_id)
 
     def get_by_username(self, username):
-        return self.session.query(User).filter(User.user_name == username).first()
+        return self.session.query(User).filter(User.username == username).first()
 
     def get_all(self):
         return self.session.query(User).all()

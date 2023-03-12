@@ -1,11 +1,12 @@
 # SkyPro
 
-## 19.2 Homework
+## 20.2 Homework
 
 ***
 About project
 ***
 
 * Using module Flask
-* Using PyJWT
-* Decorators
+* Using module Pytest
+* Using module Unittest
+* Using MagicMock

@@ -15,7 +15,8 @@ class GenresView(Resource):
 
     @auth_required
     def get(self):
-        genres = genre_service.get_all()
+        data_page = request.args.get('page')
+        genres = genre_service.get_all(data_page)
         return genres_schema.dump(genres), 200
 
     @admin_required

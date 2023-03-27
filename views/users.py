@@ -5,6 +5,7 @@ from implemented import user_service
 from decorators.decorators import admin_required, auth_required
 
 user_ns = Namespace('users')
+user_password_ns = Namespace('users/password')
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
@@ -15,13 +16,9 @@ class UsersView(Resource):
 
     @auth_required
     def get(self):
-        users = user_service.get_all()
+        data_page = request.args.get('page')
+        users = user_service.get_all(data_page)
         return users_schema.dump(users), 200
-
-    def post(self):
-        data = request.json
-        user_service.create(data)
-        return "", 201
 
 
 @user_ns.route('/<int:u_id>')
@@ -47,4 +44,14 @@ class UserView(Resource):
     @admin_required
     def delete(self, u_id):
         user_service.delete(u_id)
+        return "", 204
+
+
+@user_password_ns.route('/<int:u_id>')
+class UserPasswordView(Resource):
+
+    @auth_required
+    def put(self, u_id):
+        data = request.json
+        user_service.update_password(data, u_id)
         return "", 204

@@ -9,8 +9,9 @@ class DirectorDAO:
     def get_one(self, d_id):
         return self.session.query(Director).get(d_id)
 
-    def get_all(self):
-        return self.session.query(Director).all()
+    @staticmethod
+    def get_all(directors):
+        return directors.all()
 
     def create(self, data):
         director = Director(**data)

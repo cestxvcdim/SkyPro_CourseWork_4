@@ -9,7 +9,11 @@ class MovieDAO:
     def get_one(self, m_id):
         return self.session.query(Movie).get(m_id)
 
-    def get_all(self, movies):
+    def get_by_status(self):
+        return self.session.query(Movie).order_by(Movie.year)
+
+    @staticmethod
+    def get_all(movies):
         return movies.all()
 
     def create(self, data):

@@ -1,3 +1,4 @@
+from sqlalchemy import desc
 from dao.movie_dao import MovieDAO, Movie
 
 
@@ -9,7 +10,7 @@ class MovieService:
     def get_one(self, m_id):
         return self.dao.get_one(m_id)
 
-    def get_all(self, data_gen, data_dir, data_year):
+    def get_all(self, data_gen, data_dir, data_year, data_page, data_status):
         movies = Movie.query
         if data_dir and data_gen:
             movies = movies.filter(Movie.director_id == data_dir, Movie.genre_id == data_gen)
@@ -19,6 +20,10 @@ class MovieService:
             movies = movies.filter(Movie.genre_id == data_gen)
         elif data_year:
             movies = movies.filter(Movie.year == data_year)
+        if data_page:
+            movies = movies.limit(12).offset((int(data_page) - 1) * 12)
+        if data_status:
+            movies = self.dao.get_by_status()
         return self.dao.get_all(movies)
 
     def create(self, data):

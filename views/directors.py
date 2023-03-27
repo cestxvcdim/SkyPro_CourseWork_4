@@ -15,7 +15,8 @@ class DirectorsView(Resource):
 
     @auth_required
     def get(self):
-        directors = director_service.get_all()
+        data_page = request.args.get('page')
+        directors = director_service.get_all(data_page)
         return directors_schema.dump(directors), 200
 
     @admin_required

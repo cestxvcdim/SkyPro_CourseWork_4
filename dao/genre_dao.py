@@ -9,8 +9,9 @@ class GenreDAO:
     def get_one(self, g_id):
         return self.session.query(Genre).get(g_id)
 
-    def get_all(self):
-        return self.session.query(Genre).all()
+    @staticmethod
+    def get_all(genres):
+        return genres.all()
 
     def create(self, data):
         genre = Genre(**data)

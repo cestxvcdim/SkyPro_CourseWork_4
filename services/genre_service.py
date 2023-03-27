@@ -1,4 +1,4 @@
-from dao.genre_dao import GenreDAO
+from dao.genre_dao import GenreDAO, Genre
 
 
 class GenreService:
@@ -9,8 +9,11 @@ class GenreService:
     def get_one(self, g_id):
         return self.dao.get_one(g_id)
 
-    def get_all(self):
-        return self.dao.get_all()
+    def get_all(self, data_page):
+        genres = Genre.query
+        if data_page:
+            genres = genres.limit(12).offset((int(data_page) - 1) * 12)
+        return self.dao.get_all(genres)
 
     def create(self, data):
         return self.dao.create(data)

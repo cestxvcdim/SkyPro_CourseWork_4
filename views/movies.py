@@ -18,7 +18,9 @@ class MoviesView(Resource):
         data_dir = request.args.get('director_id', False)
         data_gen = request.args.get('genre_id', False)
         data_year = request.args.get('year', False)
-        movies = movie_service.get_all(data_gen, data_dir, data_year)
+        data_page = request.args.get('page', False)
+        data_status = request.args.get('status', False)
+        movies = movie_service.get_all(data_gen, data_dir, data_year, data_page, data_status)
         return movies_schema.dump(movies), 200
 
     @admin_required
